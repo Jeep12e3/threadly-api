@@ -1,22 +1,22 @@
 <?php
-// ✅ KUNCI JAWABAN Step 5 — app/Http/Controllers/PostController.php
-// Ubah dari HARDCODE (akhir Sesi 4) → ambil dari DATABASE.
+// ✅ KUNCI JAWABAN Step 6 (FINAL) — app/Http/Controllers/PostController.php
+// Tahap kedua: rapikan output pakai compact('posts') → { "posts": [...] }
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;   // ← import Model (baru)
+use App\Models\Post;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();   // ambil semua post dari database
+        $posts = Post::all();
 
         return response()->json(compact('posts'));
     }
 }
 
-// --- Perbandingan ---
-// SEBELUM (Sesi 4):  $posts = [ [...], [...] ];   // array hardcode
-// SESUDAH (Sesi 5):  $posts = Post::all();        // dari database
-// Bagian `return response()->json(compact('posts'))` TIDAK berubah.
+// --- Perjalanan controller ---
+// Sesi 4        : $posts = [ [...], [...] ];          → json($posts)          (hardcode, array)
+// Sesi 5 Step 5 : $posts = Post::all();               → json($posts)          (database, array)
+// Sesi 5 Step 6 : $posts = Post::all();               → json(compact('posts')) (database, { "posts": [...] })

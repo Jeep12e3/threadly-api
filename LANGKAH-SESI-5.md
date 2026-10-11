@@ -111,7 +111,7 @@ Cek phpMyAdmin → tabel `posts` → tab **Browse** → 4 baris data muncul. ✅
 
 ## Step 5 — Controller ambil dari Database 🎮
 
-Ubah `app/Http/Controllers/PostController.php`:
+Ubah `app/Http/Controllers/PostController.php` — ganti data hardcode jadi `Post::all()`:
 
 ```php
 use App\Models\Post;   // ← tambahkan import ini di atas
@@ -120,7 +120,7 @@ public function index()
 {
     $posts = Post::all();   // ← ganti dari array hardcode
 
-    return response()->json(compact('posts'));   // ← bagian ini TIDAK berubah
+    return response()->json($posts);
 }
 ```
 
@@ -131,6 +131,34 @@ php artisan serve
 Buka `http://localhost:8000/api/posts` → data sekarang **dari database**. 🎉
 
 **Buktikan:** tambah 1 baris lewat phpMyAdmin → refresh browser → post baru langsung ikut muncul, **tanpa edit kode**. 💪
+*(Kunci: `_solution/PostController.step5.php`)*
+
+---
+
+## Step 6 — Rapikan output pakai `compact()` 📦
+
+Sekarang hasilnya masih array langsung: `[ {...}, {...} ]`.
+Kita rapikan jadi `{ "posts": [...] }` pakai `compact('posts')`:
+
+```php
+public function index()
+{
+    $posts = Post::all();
+
+    return response()->json(compact('posts'));   // ← bungkus pakai compact
+}
+```
+
+`compact('posts')` = `['posts' => $posts]`, jadi JSON-nya berubah:
+
+```
+Sebelum (Step 5):  [ { "id":1, ... }, { "id":2, ... } ]
+Sesudah (Step 6):  { "posts": [ { "id":1, ... }, ... ] }
+```
+
+> 💡 **Kenapa dibungkus?** Biar bentuknya sama dengan DummyJSON di Sesi 3 (`{ "posts": [...] }`).
+> Nanti di Sesi 7, React cukup ganti URL-nya, `setPosts(data.posts)` tetap dipakai. 🎯
+
 *(Kunci: `_solution/PostController.php`)*
 
 ---
@@ -144,10 +172,11 @@ Akhir Sesi 4:  Controller → array HARDCODE → JSON
    Step 2: migration             (bikin tabel posts)
    Step 3: model Post            (jembatan ke tabel)
    Step 4: seeder                (isi data awal)
-   Step 5: Post::all()           (controller baca database)
+   Step 5: Post::all()           (controller baca database → json($posts))
+   Step 6: compact('posts')      (rapikan output → { "posts": [...] })
                      ↓
-Akhir Sesi 5:  Controller → DATABASE → JSON
+Akhir Sesi 5:  Controller → DATABASE → JSON { "posts": [...] }
 ```
 
-> 💡 Yang berubah di controller cuma **sumber datanya** (`[...]` → `Post::all()`).
-> Route & `response()->json(compact('posts'))` tetap sama persis seperti Sesi 4.
+> 💡 Yang berubah di controller cuma **sumber datanya** (`[...]` → `Post::all()`),
+> lalu **bentuk output-nya** dirapikan pakai `compact()`. Route tetap sama persis seperti Sesi 4.

@@ -17,7 +17,8 @@ untuk referensi mentor / cek jawaban peserta.
 | 2 | `php artisan make:migration` → isi kolom | `create_posts_table.php` |
 | 3 | `php artisan make:model Post` → isi `$fillable` | `Post.php` |
 | 4 | `php artisan make:seeder PostSeeder` → isi data + daftarkan di DatabaseSeeder | `PostSeeder.php`, `DatabaseSeeder.php` |
-| 5 | Ubah `PostController@index`: hardcode → `Post::all()` | `PostController.php` |
+| 5 | Ubah `PostController@index`: hardcode → `Post::all()` + `json($posts)` | `PostController.step5.php` |
+| 6 | Rapikan output pakai `compact('posts')` | `PostController.php` (final) |
 
 ## Perintah yang dijalankan peserta (urut)
 ```bash
@@ -32,7 +33,7 @@ php artisan make:model Post                      # lalu isi $fillable
 php artisan make:seeder PostSeeder               # lalu isi data
 php artisan db:seed --class=PostSeeder
 
-# Step 5 → edit PostController, lalu tes:
+# Step 5 & 6 → edit PostController, lalu tes:
 php artisan serve
 # buka http://localhost:8000/api/posts
 ```
