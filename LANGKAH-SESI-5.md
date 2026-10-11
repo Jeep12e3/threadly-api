@@ -163,6 +163,44 @@ Sesudah (Step 6):  { "posts": [ { "id":1, ... }, ... ] }
 
 ---
 
+## Step 7 — Ambil satu post (Detail) 🔍
+
+Selain semua post, API biasanya punya endpoint **satu post** berdasarkan `id`.
+
+**7a. Tambah route** di `routes/api.php`:
+```php
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/{id}', [PostController::class, 'show']);   // ← baru
+```
+`{id}` = **parameter**. Akses `/api/posts/2` → `$id = 2`.
+> 💡 Mirip `useParams()` di React Router — bagian URL yang bisa berubah-ubah.
+
+**7b. Tambah method `show`** di `PostController`:
+```php
+public function show($id)
+{
+    $post = Post::find($id);
+
+    if (!$post) {
+        return response()->json(['message' => 'Post tidak ditemukan'], 404);
+    }
+
+    return response()->json(compact('post'));
+}
+```
+
+Tes:
+| Akses | Hasil |
+|---|---|
+| `/api/posts/2` | `{ "post": { "id": 2, ... } }` — status 200 |
+| `/api/posts/999` | `{ "message": "Post tidak ditemukan" }` — status **404** |
+
+> 💡 Di sinilah gunanya `response()->json()` versi eksplisit (dari Sesi 4) — biar bisa kirim status **404**.
+
+*(Kunci: `_solution/PostController.php` & `_solution/routes-api.php`)*
+
+---
+
 ## ✅ Ringkasan Alur
 
 ```
@@ -174,8 +212,9 @@ Akhir Sesi 4:  Controller → array HARDCODE → JSON
    Step 4: seeder                (isi data awal)
    Step 5: Post::all()           (controller baca database → json($posts))
    Step 6: compact('posts')      (rapikan output → { "posts": [...] })
+   Step 7: show($id)             (detail 1 post + 404 → /posts/{id})
                      ↓
-Akhir Sesi 5:  Controller → DATABASE → JSON { "posts": [...] }
+Akhir Sesi 5:  Controller → DATABASE → JSON { "posts": [...] } + detail /posts/{id}
 ```
 
 > 💡 Yang berubah di controller cuma **sumber datanya** (`[...]` → `Post::all()`),

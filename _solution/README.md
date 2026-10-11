@@ -19,6 +19,7 @@ untuk referensi mentor / cek jawaban peserta.
 | 4 | `php artisan make:seeder PostSeeder` → isi data + daftarkan di DatabaseSeeder | `PostSeeder.php`, `DatabaseSeeder.php` |
 | 5 | Ubah `PostController@index`: hardcode → `Post::all()` + `json($posts)` | `PostController.step5.php` |
 | 6 | Rapikan output pakai `compact('posts')` | `PostController.php` (final) |
+| 7 | Detail post: route `/posts/{id}` + method `show()` (+ 404) | `PostController.php`, `routes-api.php` |
 
 ## Perintah yang dijalankan peserta (urut)
 ```bash
