@@ -11,10 +11,11 @@ class DatabaseSeeder extends Seeder
 
     /**
      * Seed the application's database.
-     * Dipanggil saat `php artisan db:seed` atau `php artisan migrate --seed`.
      */
     public function run(): void
     {
-        $this->call(PostSeeder::class);
+        // 👉 TODO (Sesi 5 - Step 4): panggil PostSeeder di sini
+        //    setelah kamu bikin seeder-nya.
+        //    $this->call(PostSeeder::class);
     }
 }

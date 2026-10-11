@@ -1,4 +1,6 @@
 <?php
+// ✅ KUNCI JAWABAN Step 4 — database/seeders/PostSeeder.php
+// Dibuat lewat: php artisan make:seeder PostSeeder
 
 namespace Database\Seeders;
 
@@ -7,10 +9,6 @@ use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
 {
-    /**
-     * Data awal — sama dengan src/data/posts.js di Threadly React.
-     * Jalankan: php artisan db:seed --class=PostSeeder
-     */
     public function run(): void
     {
         Post::create(['user_id' => 2, 'content' => 'lagi belajar React ternyata hooks seru juga 😭', 'likes' => 12, 'dislikes' => 1]);

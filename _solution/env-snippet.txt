@@ -1,0 +1,12 @@
+# ===== Step 1: bagian database di file .env =====
+# Comment baris sqlite, aktifkan blok MySQL di bawah.
+# Jangan lupa bikin database "threadly" dulu di phpMyAdmin.
+
+# DB_CONNECTION=sqlite
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=threadly
+DB_USERNAME=root
+DB_PASSWORD=

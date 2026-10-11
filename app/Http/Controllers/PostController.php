@@ -2,35 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-
 class PostController extends Controller
 {
     /**
      * GET /api/posts
-     * Ambil semua post dari database.
+     *
+     * ⬅️ Ini kondisi akhir SESI 4: datanya masih HARDCODE di sini.
+     *
+     * 🎯 TARGET SESI 5: ganti data hardcode ini supaya diambil dari DATABASE.
+     *    (lihat LANGKAH-SESI-5.md — nanti method ini pakai Post::all())
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = [
+            ['id' => 1, 'user_id' => 2, 'content' => 'lagi belajar React ternyata hooks seru juga 😭', 'likes' => 12, 'dislikes' => 1],
+            ['id' => 2, 'user_id' => 3, 'content' => 'ada yang mau belajar React bareng?', 'likes' => 8, 'dislikes' => 0],
+            ['id' => 3, 'user_id' => 4, 'content' => 'hari ini akhirnya selesai bikin component pertama', 'likes' => 15, 'dislikes' => 2],
+            ['id' => 4, 'user_id' => 5, 'content' => 'kenapa CSS selalu bikin layout berantakan 😭', 'likes' => 20, 'dislikes' => 3],
+        ];
 
-        // compact('posts') → ['posts' => $posts]
-        // Hasil JSON: { "posts": [...] }  (bentuknya sama seperti DummyJSON)
         return response()->json(compact('posts'));
-    }
-
-    /**
-     * GET /api/posts/{id}
-     * Ambil satu post berdasarkan id.
-     */
-    public function show($id)
-    {
-        $post = Post::find($id);
-
-        if (!$post) {
-            return response()->json(['message' => 'Post tidak ditemukan'], 404);
-        }
-
-        return response()->json(compact('post'));
     }
 }

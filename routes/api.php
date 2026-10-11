@@ -6,13 +6,10 @@ use App\Http\Controllers\PostController;
 
 // Semua route di sini otomatis diawali /api
 
-// GET /api/posts        → semua post
+// GET /api/posts → semua post (dibuat di Sesi 4)
 Route::get('/posts', [PostController::class, 'index']);
 
-// GET /api/posts/{id}   → satu post
-Route::get('/posts/{id}', [PostController::class, 'show']);
-
-// (bawaan Laravel Sanctum — dibiarkan untuk referensi auth nanti)
+// (bawaan Laravel Sanctum)
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');

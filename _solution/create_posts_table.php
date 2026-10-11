@@ -1,4 +1,6 @@
 <?php
+// ✅ KUNCI JAWABAN Step 2 — database/migrations/xxxx_create_posts_table.php
+// Dibuat lewat: php artisan make:migration create_posts_table
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -6,9 +8,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * up() dijalankan saat `php artisan migrate` → BIKIN tabel.
-     */
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
@@ -21,9 +20,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * down() dijalankan saat `php artisan migrate:rollback` → HAPUS tabel.
-     */
     public function down(): void
     {
         Schema::dropIfExists('posts');
