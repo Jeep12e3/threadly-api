@@ -53,11 +53,19 @@ Server jalan di `http://localhost:8000`.
 |---|---|---|---|
 | GET | `/api/posts` | semua post | `{ "posts": [...] }` |
 | GET | `/api/posts/{id}` | satu post | `{ "post": {...} }` atau 404 |
+| POST | `/api/posts` | bikin post baru (Sesi 6) | `{ "post": {...} }` 201 / error 422 |
+| POST | `/api/posts/{id}/like` | tambah like (Sesi 6) | `{ "post": {...} }` |
+| POST | `/api/posts/{id}/dislike` | tambah dislike (Sesi 6) | `{ "post": {...} }` |
 
-Tes cepat (browser atau terminal):
+Tes cepat GET (browser atau terminal):
 ```bash
 curl http://localhost:8000/api/posts
 ```
+> `POST` ga bisa lewat browser — pakai Thunder Client / Postman.
+
+> 📌 **Branch ini (`sesi-6-7-middleware-fullstack`)** sudah berisi hasil akhir Sesi 5
+> sebagai base. Endpoint `store`/`like`/`dislike` di atas dikerjakan di Sesi 6.
+> Panduan: `LANGKAH-SESI-6-7.md` · Konsep: `SESI-6-7-MIDDLEWARE-FULLSTACK.md`.
 
 ---
 

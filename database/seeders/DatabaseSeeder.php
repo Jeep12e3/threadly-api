@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 👉 TODO (Sesi 5 - Step 4): panggil PostSeeder di sini
-        //    setelah kamu bikin seeder-nya.
-        //    $this->call(PostSeeder::class);
+        $this->call(PostSeeder::class);
     }
 }
