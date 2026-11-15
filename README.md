@@ -1,11 +1,16 @@
 # 🔌 Threadly API (Laravel)
 
-Backend untuk project **Threadly** — dibangun di sesi training:
+Backend untuk project **Threadly** — dibangun di sesi training.
 
-- **Sesi 4 — API Fundamentals:** MVC, Routing & Controller, JSON Output
-- **Sesi 5 — Database Integration:** Migration, Model (the "M"), `compact()` output
+> 📌 **Branch `sesi-6-7-middleware-fullstack`.** Titik awalnya = **hasil akhir Sesi 5**
+> (database sudah jalan: Model `Post`, migration, seeder, `GET /posts` & `/posts/{id}`).
+> Fokus branch ini:
+> - **Sesi 6 — Middleware & Logic:** `POST /api/posts` + validasi + like/dislike + middleware
+> - **Sesi 7 — Full-Stack Integration:** CORS + `threadly-react` consume API ini
+>
+> Panduan langkah: **`LANGKAH-SESI-6-7.md`** · Konsep: **`SESI-6-7-MIDDLEWARE-FULLSTACK.md`**
 
-Frontend-nya ada di repo terpisah: **`threadly-react`**. Keduanya baru disambungkan di **Sesi 7**.
+Frontend-nya ada di repo terpisah: **`threadly-react`** (disambungkan di Sesi 7).
 
 ---
 
@@ -22,19 +27,12 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-### 3. Pilih database
+### 3. Siapkan database (MySQL / XAMPP)
 
-**Opsi A — SQLite (default, langsung jalan):**
-Tidak perlu setup apa-apa. `.env` sudah `DB_CONNECTION=sqlite`.
-```bash
-php artisan migrate --seed
-```
-
-**Opsi B — MySQL (XAMPP), sesuai materi Sesi 5:**
+`.env.example` sudah di-set ke **MySQL**.
 1. Nyalakan **MySQL** di XAMPP Control Panel.
 2. Buka phpMyAdmin → buat database bernama **`threadly`**.
-3. Di `.env`: comment `DB_CONNECTION=sqlite`, lalu aktifkan blok MySQL (lihat `.env.example`).
-4. Jalankan:
+3. Jalankan:
 ```bash
 php artisan migrate --seed
 ```
@@ -76,7 +74,7 @@ app/
 ├── Models/
 │   └── Post.php                     # Model (mewakili tabel posts)
 └── Http/Controllers/
-    └── PostController.php           # index() & show()
+    └── PostController.php           # index(), show() — + store()/like()/dislike() (Sesi 6)
 database/
 ├── migrations/
 │   └── *_create_posts_table.php     # cetak biru tabel posts
@@ -84,7 +82,10 @@ database/
     ├── PostSeeder.php               # data awal (= posts.js di React)
     └── DatabaseSeeder.php           # memanggil PostSeeder
 routes/
-└── api.php                          # /posts & /posts/{id}
+└── api.php                          # /posts, /posts/{id} — + endpoint Sesi 6
+_solution/                           # kunci jawaban Sesi 6+7 (bukan bagian aplikasi)
+LANGKAH-SESI-6-7.md                  # panduan langkah praktik
+SESI-6-7-MIDDLEWARE-FULLSTACK.md     # materi konsep lengkap
 ```
 
 ---
@@ -102,8 +103,6 @@ php artisan route:list                 # lihat semua route
 
 ---
 
-## 🛣️ Rencana Sesi Berikutnya
+## 🛣️ Sesi Berikutnya
 
-- **Sesi 6 — Middleware & Logic:** tambah endpoint `POST /api/posts` + **validasi** data & middleware.
-- **Sesi 7 — Full-Stack Integration:** konfigurasi **CORS**, lalu `threadly-react` consume API ini (ganti DummyJSON → API sendiri).
-- **Sesi 8 — Deployment:** deploy backend + web server NGINX.
+- **Sesi 8 — Deployment:** deploy backend + frontend + web server NGINX.

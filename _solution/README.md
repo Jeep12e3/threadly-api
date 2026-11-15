@@ -1,37 +1,27 @@
-# 🔑 _solution — Kunci Jawaban
+# 🔑 _solution — Kunci Jawaban Sesi 6 + 7
 
 Folder ini **BUKAN bagian aplikasi** (tidak dipakai Laravel). Isinya versi **jadi** dari
-tiap langkah, untuk referensi mentor / cek jawaban peserta.
+tiap langkah Sesi 6+7, untuk referensi mentor / cek jawaban peserta.
 
-> Panduan langkah: `../LANGKAH-SESI-5.md` (Sesi 5) dan `../LANGKAH-SESI-6-7.md` (Sesi 6+7).
+> Panduan langkah: `../LANGKAH-SESI-6-7.md` · Konsep: `../SESI-6-7-MIDDLEWARE-FULLSTACK.md`
 
 ---
 
 ## 📦 Base branch ini = AKHIR Sesi 5
 
-Berbeda dengan `main` (yang berada di akhir Sesi 4), branch `sesi-6-7-middleware-fullstack`
-**sudah mengandung hasil akhir Sesi 5** sebagai titik awal:
+Branch `sesi-6-7-middleware-fullstack` **sudah mengandung hasil akhir Sesi 5** sebagai
+titik awal (bukan kunci jawaban — ini kode aplikasi beneran yang sudah jalan):
 
-- `app/Models/Post.php` → Model `Post` (sudah ada)
-- `database/migrations/*_create_posts_table.php` → tabel `posts` (sudah ada)
-- `database/seeders/PostSeeder.php` + `DatabaseSeeder.php` → data awal (sudah ada)
-- `app/Http/Controllers/PostController.php` → `index()` & `show()` baca DB (sudah ada)
-- `routes/api.php` → `GET /posts` & `GET /posts/{id}` (sudah ada)
-- `.env.example` → sudah `DB_CONNECTION=mysql`
+- `app/Models/Post.php` → Model `Post`
+- `database/migrations/*_create_posts_table.php` → tabel `posts`
+- `database/seeders/PostSeeder.php` + `DatabaseSeeder.php` → data awal
+- `app/Http/Controllers/PostController.php` → `index()` & `show()` baca DB
+- `routes/api.php` → `GET /posts` & `GET /posts/{id}`
+- `.env.example` → `DB_CONNECTION=mysql`
 
 Jadi peserta **langsung mulai dari Sesi 6**, tidak perlu mengulang Sesi 5.
 
 ---
-
-## Kunci jawaban Sesi 5 (referensi base)
-
-| Konsep | File jawaban |
-|---|---|
-| Migration `posts` | `create_posts_table.php` |
-| Model `Post` | `Post.php` |
-| Seeder | `PostSeeder.php`, `DatabaseSeeder.php` |
-| Controller index (array → DB) | `PostController.step5.php` |
-| Controller final (compact + show) | `PostController.php`, `routes-api.php` |
 
 ## Kunci jawaban Sesi 6 — Middleware & Logic
 
